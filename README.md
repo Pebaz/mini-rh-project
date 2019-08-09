@@ -24,7 +24,14 @@ $ python main.py web
 ### Run Tests
 
 ```bash
+# Just test
 $ pytest
+
+# Test with Coverage
+$ pytest --cov=rh tests
+
+# Output Coverage Report
+$ pytest --cov=rh tests --cov-report=html
 ```
 
 ### Example Routes
@@ -40,4 +47,5 @@ $ pytest
 ### Notes
 
 * As per instructions, the `actors` API route returns a simple text output in Markdeep format.
+* SQL queries were written using the `qmark` parameter style (obtained from `sqlite3.paramstyle`).
 
