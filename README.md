@@ -41,6 +41,8 @@ $ pytest --cov=rh tests --cov-report=html
 
 ### Example Routes
 
+[`/`](http://localhost:8000)
+
 [`/actor/Harrison%20Ford`](http://localhost:8000/actor/Harrison%20Ford)
 
 [`/top10/directors`](http://localhost:8000/top10/directors)
