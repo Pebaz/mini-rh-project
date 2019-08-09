@@ -9,6 +9,20 @@ from rh.query import *
 app = Flask(__name__)
 
 
+@app.errorhandler(404)
+def page_not_found(e):
+    """
+	For any other route, show custom 404 error page.
+
+	Args:
+		e(error): the error that occurred.
+
+	Returns:
+		A simple 404 page in the same style as the rest of the site.
+	"""
+    return render_template('not-found.j2'), 404
+
+
 @app.route('/')
 def root():
 	"""

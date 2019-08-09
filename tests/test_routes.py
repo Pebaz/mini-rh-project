@@ -25,6 +25,31 @@ def captured_templates(app):
 		template_rendered.disconnect(record, app)
 
 
+def test_root():
+	with captured_templates(app) as templates:
+		result = app.test_client().get('/')
+
+		assert result.status_code == 200
+		assert len(templates) == 1
+
+		template, context = templates[0]
+
+		assert template.name == 'root.j2'
+		
+
+def test_not_found():
+	with captured_templates(app) as templates:
+		result = app.test_client().get('/foo')
+
+		assert result.status_code == 404
+		assert len(templates) == 1
+
+		template, context = templates[0]
+
+		assert template.name == 'not-found.j2'
+
+
+
 def test_top10_genres():
 	with captured_templates(app) as templates:
 		result = app.test_client().get('/top10/genres')
