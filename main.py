@@ -7,7 +7,7 @@ import sys  # Command Line Arguments & Program Exit Code
 def main(args):
 	if 'web' in args:
 		from rh.routes import app
-		app.run('0.0.0.0', 8000, debug=True)
+		app.run('0.0.0.0', 8000)
 
 	elif 'cli' in args:
 		from rh.query import (
@@ -19,20 +19,14 @@ def main(args):
 		print('Top 10 Genres by Profitability:')
 		for i in get_top_10_genres_by_profit():
 			print('   ', i[0], i[1])
-		for i in get_top_10_genres_by_profit():
-			print(i)
 
 		print('\nTop 10 Actors by Profitability:')
 		for i in get_top_10_actors_by_profit():
 			print('   ', i[0], i[1])
-		for i in get_top_10_actors_by_profit():
-			print(i)
 
 		print('\nTop 10 Directors by Profitability:')
 		for i in get_top_10_directors_by_profit():
 			print('   ', i[0], i[1])
-		for i in get_top_10_directors_by_profit():
-			print(i)
 
 	else:
 		print('Usage:\n    python main.py [web | cli]')

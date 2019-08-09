@@ -3,9 +3,24 @@
 {% if actor %}
     {% for row in actor %}
         ## {{ row[11] }}
-        {% for data in row %}
-            * {{ data }}
+
+        {{ columns }}
+
+        {% for column in columns -%}
+            {{ column_names[column] }} |
+        {%- endfor -%}
+
+        {#
+        {%- for column in columns -%}
+            --|--
+        {%- endfor -%}
+
+        {%- for column in columns -%}
+            {{ row[column] }} |
         {% endfor %}
+        #}
+
+
     {% endfor %}
 {% else %}
     No data found for actor.
