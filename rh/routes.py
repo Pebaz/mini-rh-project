@@ -1,17 +1,30 @@
 """
+Simple web application for viewing database data within a web browser.
 """
 
 from flask import Flask, render_template
 from rh.query import *
 
+
 app = Flask(__name__)
+
 
 @app.route('/actor/<name>')
 def actor(name):
 	"""
-	Test http://localhost:8000/actor/Harrison%20Ford
+	View relevant data about each movie that an actor appeared in.
+
+	Entire column set is provided for easy future customizations of the columns
+	shown.
+
+	Args:
+		name(str): the actor's name to lookup in the database.
+
+	Returns:
+		Simple textual output of each movie that the actor appeared in.
 	"""
 	actor = get_actor_info(name)
+	
 	column_names = [
 		'color',
 		'Director Name',
@@ -61,25 +74,29 @@ def actor(name):
 
 @app.route('/top10/<category>')
 def top10(category):
-	if category == 'genres':
+	"""
+	View the top 10 genres, actors, or directors by profitability.
+
+	Profitability is calculated as: `gross` - `budget`.
+
+	Acceptable URL parameters include:
+	
+	 * /genres
+	 * /actors
+	 * /directors
+
+	Args:
+		category(str): the category to query from the database.
+
+	Returns:
+		Simple textual output of the top 10 elements by profitability of the
+		selected category.
+	"""
+	if category in ('genres', 'actors', 'directors'):
 		return render_template(
 			'top10.j2',
 			category_name=category,
 			category=get_top_10_genres_by_profit()
-		)
-
-	elif category == 'actors':
-		return render_template(
-			'top10.j2',
-			category_name=category,
-			category=get_top_10_actors_by_profit()
-		)
-
-	elif category == 'directors':
-		return render_template(
-			'top10.j2',
-			category_name=category,
-			category=get_top_10_directors_by_profit()
 		)
 
 	else:

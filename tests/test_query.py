@@ -1,3 +1,11 @@
+"""
+Test queries for:
+
+ * Num rows returned
+ * Row content
+ * Row ordering
+"""
+
 import test_common
 from rh.query import *
 

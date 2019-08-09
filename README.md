@@ -50,6 +50,7 @@ $ pytest --cov=rh tests --cov-report=html
 * **Blinker**: Subscription to Signals in Flask.
 * **PyTest**: Unit testing.
 * **PyTest-Cov**: Test coverage.
+* **Markdeep**: Convert plain text to formatted HTML automatically.
 
 ### Notes
 

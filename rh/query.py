@@ -1,3 +1,12 @@
+"""
+SQLite3 database query functions.
+
+`query` is the generic function used by the other query functions to abstract
+away connecting, querying, closing, and returning a result set.
+
+The functions starting with `get` all return customized data.
+"""
+
 from pathlib import Path
 import sqlite3 as sql
 

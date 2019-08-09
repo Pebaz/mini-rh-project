@@ -1,3 +1,12 @@
+"""
+Test all routes for:
+
+ * Correct template usage
+ * Correct template parameter ingestion
+ * HTTP status code
+ * Failure
+"""
+
 import test_common
 from flask import template_rendered
 from contextlib import contextmanager
