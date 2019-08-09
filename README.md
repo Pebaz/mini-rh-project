@@ -27,6 +27,16 @@ $ python main.py web
 $ pytest
 ```
 
+### Example Routes
+
+[`/actor/Harrison%20Ford`](http://localhost:8000/actor/Harrison%20Ford)
+
+[`/top10/directors`](http://localhost:8000/top10/directors)
+
+[`/top10/actors`](http://localhost:8000/top10/actors)
+
+[`/top10/genres`](http://localhost:8000/top10/genres)
+
 ### Notes
 
 * As per instructions, the `actors` API route returns a simple text output in Markdeep format.

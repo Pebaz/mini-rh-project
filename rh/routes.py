@@ -35,7 +35,7 @@ def actor(name):
 		'language',
 		'country',
 		'content_rating',
-		'budget',
+		'Budget',
 		'Title Year',
 		'actor_2_facebook_likes',
 		'IMDB Score',
@@ -44,7 +44,7 @@ def actor(name):
 	]
 
 	columns = [
-		23, 1, 3, 8, -3, -11
+		23, 1, 3, 8, -6, -3
 	]
 
 	if not actor:
