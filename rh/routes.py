@@ -14,14 +14,14 @@ def actor(name):
 	actor = get_actor_info(name)
 	column_names = [
 		'color',
-		'director_name',
+		'Director Name',
 		'num_critic_for_reviews',
-		'duration',
+		'Duration',
 		'director_facebook_likes',
 		'actor_3_facebook_likes',
 		'actor_2_name',
 		'actor_1_facebook_likes',
-		'gross',
+		'Gross',
 		'genres',
 		'actor_1_name',
 		'movie_title',
@@ -30,21 +30,21 @@ def actor(name):
 		'actor_3_name',
 		'facenumber_in_poster',
 		'plot_keywords',
-		'movie_imdb_link',
+		'IMDB Link',
 		'num_user_for_reviews',
 		'language',
 		'country',
 		'content_rating',
 		'budget',
-		'title_year',
+		'Title Year',
 		'actor_2_facebook_likes',
-		'imdb_score',
+		'IMDB Score',
 		'aspect_ratio',
 		'movie_facebook_likes'
 	]
 
 	columns = [
-		0, 1, 2, 3
+		23, 1, 3, 8, -3, -11
 	]
 
 	if not actor:

@@ -4,22 +4,9 @@
     {% for row in actor %}
         ## {{ row[11] }}
 
-        {{ columns }}
-
-        {% for column in columns -%}
-            {{ column_names[column] }} |
-        {%- endfor -%}
-
-        {#
-        {%- for column in columns -%}
-            --|--
-        {%- endfor -%}
-
-        {%- for column in columns -%}
-            {{ row[column] }} |
-        {% endfor %}
-        #}
-
+        {% for column in columns -%} {{ column_names[column] }} | {%- endfor %}
+        {% for column in columns -%} --| {%- endfor %}
+        {% for column in columns -%} {{ row[column] }} | {% endfor %}
 
     {% endfor %}
 {% else %}
