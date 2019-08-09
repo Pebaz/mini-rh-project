@@ -5,6 +5,8 @@ Made by Samuel Wilder, 8/8/2019 for Red Hat.
 ### Installation
 
 ```bash
+$ git clone https://github.com/Pebaz/mini-rh-project
+$ cd mini-rh-project
 $ pip install -r requirements.txt
 ```
 
