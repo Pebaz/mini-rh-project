@@ -48,7 +48,7 @@ def actor(name):
 	]
 
 	if not actor:
-		return render_template('not-found.j2')
+		return render_template('not-found.j2'), 404
 
 	return render_template(
 		'actor.j2',
@@ -83,4 +83,4 @@ def top10(category):
 		)
 
 	else:
-		return render_template('not-found.j2')
+		return render_template('not-found.j2'), 404
