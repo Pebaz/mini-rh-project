@@ -14,8 +14,11 @@ $ pip install -r requirements.txt
 # Help Screen
 $ python main.py
 
-# Output Top 10 Genres, Actors, and Directors in Decreasing Order by Profitability
+# Output Top 10 Genres, Actors, or Directors in Decreasing Order by Profitability
 $ python main.py cli
+$ python main.py cli genres
+$ python main.py cli actors
+$ python main.py cli directors
 
 # Launch Web Server
 $ python main.py web
