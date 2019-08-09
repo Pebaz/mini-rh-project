@@ -9,6 +9,19 @@ from rh.query import *
 app = Flask(__name__)
 
 
+@app.route('/')
+def root():
+	"""
+	Front page of the project.
+
+	Shows some example routes to visit.
+
+	Returns:
+		Simple textual output of some example routes.
+	"""
+	return render_template('root.j2')
+
+
 @app.route('/actor/<name>')
 def actor(name):
 	"""
@@ -93,10 +106,17 @@ def top10(category):
 		selected category.
 	"""
 	if category in ('genres', 'actors', 'directors'):
+		if category == 'genres':
+			data = get_top_10_genres_by_profit()
+		elif category == 'actors':
+			data = get_top_10_actors_by_profit()
+		elif category == 'directors':
+			data = get_top_10_directors_by_profit()
+
 		return render_template(
 			'top10.j2',
 			category_name=category,
-			category=get_top_10_genres_by_profit()
+			category=data
 		)
 
 	else:

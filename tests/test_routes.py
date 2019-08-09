@@ -38,6 +38,8 @@ def test_top10_genres():
 		assert context['category_name'] == 'genres'
 		assert len(context['category']) == 10
 
+		assert context['category'] == get_top_10_genres_by_profit()
+
 
 def test_top10_actors():
 	with captured_templates(app) as templates:
@@ -52,6 +54,8 @@ def test_top10_actors():
 		assert context['category_name'] == 'actors'
 		assert len(context['category']) == 10
 
+		assert context['category'] == get_top_10_actors_by_profit()
+
 
 def test_top10_directors():
 	with captured_templates(app) as templates:
@@ -65,6 +69,8 @@ def test_top10_directors():
 		assert template.name == 'top10.j2'
 		assert context['category_name'] == 'directors'
 		assert len(context['category']) == 10
+
+		assert context['category'] == get_top_10_directors_by_profit()
 
 
 def test_top10_error():
