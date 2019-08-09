@@ -35,8 +35,8 @@ class Movie:
 		actors = [self.actor_1_name, self.actor_2_name, self.actor_3_name]
 		self.actors = [i for i in actors if i]
 
-		# Precalculate profitibility
-		self.profitibility = self.gross - self.budget
+		# Precalculate profitability
+		self.profitability = self.gross - self.budget
 
 		# Contribute to set of all genres
 		for genre in self.genres:
@@ -68,15 +68,15 @@ with open('res/movie_metadata.csv', encoding='utf8') as file:
 		data.append(movie)
 
 		director_profits.setdefault(movie.director_name, 0)
-		director_profits[movie.director_name] += movie.profitibility
+		director_profits[movie.director_name] += movie.profitability
 
 		for name in movie.actors:
 			actor_profits.setdefault(name, 0)
-			actor_profits[name] += movie.profitibility  # * actor_likes (a1 + a2 + a3)
+			actor_profits[name] += movie.profitability  # * actor_likes (a1 + a2 + a3)
 
 		for genre in movie.genres:
 			genre_profits.setdefault(genre, 0)
-			genre_profits[genre] += movie.profitibility
+			genre_profits[genre] += movie.profitability
 
 sys.stdout.write('Done\n')
 
@@ -100,7 +100,7 @@ if False:
 select director_name, sum(gross - budget) as profit from moviedata group by director_name order by profit desc limit 10
 '''
 def director_total_profit(director):
-	return sum([i.profitibility for i in data if i.director_name == director])
+	return sum([i.profitability for i in data if i.director_name == director])
 
 sys.stdout.write('Collecting director profit...')
 sys.stdout.flush()
@@ -136,7 +136,7 @@ with split(word, str) as (
 ) select word from split where word != '' group by word;
 
 
--- Profitibility by Genre:
+-- Profitability by Genre:
 select 'Action', sum(gross - budget) as Profit from moviedata where instr(genres, 'Action') > 0;
 select 'Documentary', sum(gross - budget) as Profit from moviedata where instr(genres, 'Documentary') > 0;
 
@@ -167,7 +167,7 @@ limit 10;
 # Top 10 Directors by profit
 
 def genre_total_profit(genre):
-	return sum([i.profitibility for i in data if genre in i.genres])
+	return sum([i.profitability for i in data if genre in i.genres])
 
 sys.stdout.write('Collecting genre profit...')
 sys.stdout.flush()
@@ -188,7 +188,7 @@ for genre in list(top_genres_by_profit.keys())[:10]:
 
 # -----------------------------------------------------------------------------
 '''
--- Actor Profitibility
+-- Actor Profitability
 select Name, sum(gross - budget) as profit from (
 	select actor_1_name as Name, gross, budget from moviedata union
 	select actor_2_name as Name, gross, budget from moviedata union
@@ -197,7 +197,7 @@ select Name, sum(gross - budget) as profit from (
 '''
 # Top 10 Actors by profit
 def actor_total_profit(actor):
-	return sum([i.profitibility for i in data if actor in i.actors])
+	return sum([i.profitability for i in data if actor in i.actors])
 
 sys.stdout.write('Collecting actor profit...')
 sys.stdout.flush()

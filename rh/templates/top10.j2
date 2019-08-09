@@ -1,0 +1,12 @@
+{% if category_name %}
+    # Top 10 {{ category_name.capitalize() }} by Profitability
+
+    {% for row in category %}
+        * {{ row[0] }}
+    {% endfor %}
+
+{% else %}
+    # Category "{{ category_name }}" Not Found.
+{% endif %}
+
+{% include "markdeep.j2" %}
