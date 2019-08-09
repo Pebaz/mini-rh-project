@@ -44,8 +44,14 @@ $ pytest --cov=rh tests --cov-report=html
 
 [`/top10/genres`](http://localhost:8000/top10/genres)
 
+### Libraries Used
+
+* **Flask**: Web application framework.
+* **Blinker**: Subscription to Signals in Flask.
+* **PyTest**: Unit testing.
+* **PyTest-Cov**: Test coverage.
+
 ### Notes
 
 * As per instructions, the `actors` API route returns a simple text output in Markdeep format.
 * SQL queries were written using the `qmark` parameter style (obtained from `sqlite3.paramstyle`).
-
