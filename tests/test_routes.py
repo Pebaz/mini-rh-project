@@ -1,19 +1,58 @@
 import test_common
-import pytest
+from flask import template_rendered
+from contextlib import contextmanager
 from rh.routes import *
 
 
-@pytest.fixture
-def client():
-	"""
-	PyTest fixture for providing access to a mocked WSGI app instance.
-	"""
-	yield app.test_client()
+@contextmanager
+def captured_templates(app):
+    recorded = []
+    def record(sender, template, context, **extra):
+        recorded.append((template, context))
+    template_rendered.connect(record, app)
+    try:
+        yield recorded
+    finally:
+        template_rendered.disconnect(record, app)
 
 
+def test_top10_genres():
+    with captured_templates(app) as templates:
+        result = app.test_client().get('/top10/genres')
 
-def test_top10(client):
-    result = client.get('/top10/genres')
+        assert result.status_code == 200
+        assert len(templates) == 1
 
-    print(dir(result))
+        template, context = templates[0]
 
+        assert template.name == 'top10.j2'
+        assert context['category_name'] == 'genres'
+        assert len(context['category']) == 10
+
+
+def test_top10_actors():
+    with captured_templates(app) as templates:
+        result = app.test_client().get('/top10/actors')
+
+        assert result.status_code == 200
+        assert len(templates) == 1
+
+        template, context = templates[0]
+
+        assert template.name == 'top10.j2'
+        assert context['category_name'] == 'actors'
+        assert len(context['category']) == 10
+
+
+def test_top10_directors():
+    with captured_templates(app) as templates:
+        result = app.test_client().get('/top10/directors')
+
+        assert result.status_code == 200
+        assert len(templates) == 1
+
+        template, context = templates[0]
+
+        assert template.name == 'top10.j2'
+        assert context['category_name'] == 'directors'
+        assert len(context['category']) == 10
