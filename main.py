@@ -23,18 +23,18 @@ def main(args):
 
 	elif 'cli' in args:
 
-		from rh.query import (
-			get_top_10_genres_by_profit,
-			get_top_10_actors_by_profit,
-			get_top_10_directors_by_profit
-		)
-
-		# from rh.data import (
-		# 	load_data,
+		# from rh.query import (
 		# 	get_top_10_genres_by_profit,
 		# 	get_top_10_actors_by_profit,
-		# 	get_top_10_directors_by_profit,
+		# 	get_top_10_directors_by_profit
 		# )
+
+		from rh.data import (
+			load_data,
+			get_top_10_genres_by_profit,
+			get_top_10_actors_by_profit,
+			get_top_10_directors_by_profit,
+		)
 
 		# If no arguments are supplied to `cli`, show all categories
 		print_all = not any([i in args for i in categories])

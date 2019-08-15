@@ -1,30 +1,41 @@
+"""
+Movie dataset query functions.
+
+`load_data` is the generic function used by the other query functions to
+parse the CSV data into a Pandas DataFrame.
+
+The functions starting with `get` all return customized data.
+"""
+
+from functools import lru_cache
 import pandas as pd
 
+
+@lru_cache(maxsize=1)
 def load_data():
 	"""
 	It is assumed that the movie data is located in the `res` folder.
 
-	a.groupby('director_name').agg({'profit' : ['sum']}).sort_values(('profit', 'sum'), ascending=False)[:10]
-	genres = {a for i in a.genres for a in i.split('|')}
-	a.loc[a.genres.str.contains('Action')].agg({'profit' : ['sum']})
-	profits = {i : float(a.loc[a.genres.str.contains(i)].agg({'profit' : ['sum']}).profit) for i in g }
+	Since this function is basically acting as a global variable and will
+	always take no arguments, an LRU cache will ensure that the csv data is
+	only loaded from disk once.
 
-	genres_by_profit = dict(sorted(profits.items(), key=lambda x: x[1], reverse=True))
-
-	genres_by_profit = pd.DataFrame(profits.values(), index=profits.keys(), columns=['profit']).sort_values('profit', ascending=False)
+	Returns:
+		A Pandas DataFrame containing the movie data from the given CSV file.
 	"""
 	raw = pd.read_csv('res/moviedata.csv')
 	raw['profit'] = raw['gross'] - raw['budget']
 	return raw
 
 
-DATA = load_data()
-
-
 def get_top_10_genres_by_profit():
 	"""
+	Get the 10 most profitible genres within the movie dataset.
+
+    Returns:
+        A list of 10 tuples containing the genre name, followed by its profit.
 	"""
-	global DATA
+	DATA = load_data()
 
 	genres = {a for i in DATA.genres for a in i.split('|')}
 
@@ -47,8 +58,12 @@ def get_top_10_genres_by_profit():
 
 def get_top_10_actors_by_profit():
 	"""
+	Get the 10 most profitible actors within the movie dataset.
+
+    Returns:
+        A list of 10 tuples containing the actor name, followed by its profit.
 	"""
-	global DATA
+	DATA = load_data()
 
 	actors = {
 		d for i in
@@ -77,8 +92,13 @@ def get_top_10_actors_by_profit():
 
 def get_top_10_directors_by_profit():
 	"""
+	Get the 10 most profitible directors within the movie dataset.
+
+    Returns:
+        A list of 10 tuples containing the director name, followed by their
+		profit.
 	"""
-	global DATA
+	DATA = load_data()
 
 	raw = DATA.groupby(
 		'director_name'
