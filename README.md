@@ -58,6 +58,7 @@ $ pytest --cov=rh tests --cov-report=html
 * **PyTest**: Unit testing.
 * **PyTest-Cov**: Test coverage.
 * **Markdeep**: Convert plain text to formatted HTML automatically.
+* **Pandas**: Powerful data structures and queries.
 
 ### Notes
 
