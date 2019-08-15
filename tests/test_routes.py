@@ -11,6 +11,7 @@ import test_common
 from flask import template_rendered
 from contextlib import contextmanager
 from rh.routes import *
+from test_common import *
 
 
 @contextmanager
@@ -63,7 +64,7 @@ def test_top10_genres():
         assert context['category_name'] == 'genres'
         assert len(context['category']) == 10
 
-        assert context['category'] == get_top_10_genres_by_profit()
+        assert context['category'] == top_10_genres_by_profit
 
 
 def test_top10_actors():
@@ -79,7 +80,7 @@ def test_top10_actors():
         assert context['category_name'] == 'actors'
         assert len(context['category']) == 10
 
-        assert context['category'] == get_top_10_actors_by_profit()
+        assert context['category'] == top_10_actors_by_profit
 
 
 def test_top10_directors():
@@ -95,7 +96,7 @@ def test_top10_directors():
         assert context['category_name'] == 'directors'
         assert len(context['category']) == 10
 
-        assert context['category'] == get_top_10_directors_by_profit()
+        assert context['category'] == top_10_directors_by_profit
 
 
 def test_top10_error():

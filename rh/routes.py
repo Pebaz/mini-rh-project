@@ -3,7 +3,7 @@ Simple web application for viewing database data within a web browser.
 """
 
 from flask import Flask, render_template
-from rh.query import *
+from rh.data import *
 
 
 app = Flask(__name__)
