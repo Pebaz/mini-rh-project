@@ -63,6 +63,13 @@ def get_top_10_genres_by_profit():
 
 def __get_actor_profit(actor):
     """
+    Get the profit of a single actor.
+
+    Args:
+        actor(str): the full name of the actor to query.
+
+    Returns:
+        A float representing the total profit of the actor.
     """
     DATA = load_data()
     raw = DATA.loc[
